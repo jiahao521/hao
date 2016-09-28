@@ -1,0 +1,114 @@
+
+public class Persion {
+	
+	private String name;
+	private String tel;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	
+}
+
+
+
+
+public class Phone {
+
+	private Persion[] person = new Persion[5];
+
+	public void start() {
+
+		System.out.println("1.保存号码");
+		System.out.println("2.查询号码");
+		System.out.println("请选择功能");
+		java.util.Scanner input = new java.util.Scanner(System.in);
+		int numb = input.nextInt();
+
+		if (numb == 1) {
+			save();
+		} else if (numb == 2) {
+			get();
+		} else {
+			System.out.println("功能不存在，请重选");
+			start();
+		}
+	}
+
+	private void save() {
+
+		java.util.Scanner input = new java.util.Scanner(System.in);
+		System.out.println("请输入联系人姓名:");
+		String name = input.next();
+
+		boolean flag = true;
+
+		for (int i = 0; i < person.length; i++) {
+			if (person[i] == null) {
+
+				flag = false;
+
+				System.out.println("请输入联系人电话:");
+				String number = input.next();
+
+				Persion p = new Persion();
+				p.setName(name);
+				p.setTel(number);
+				person[i] = p;
+				break;
+			}
+		}
+		if (flag) {
+			System.out.println("存储空间已满，无法存储");
+		} else {
+			System.out.println("保存成功");
+		}
+	}
+
+	private void get() {
+		java.util.Scanner input = new java.util.Scanner(System.in);
+		System.out.println("请输入名字");
+		String name = input.next();
+		
+		Persion n = new Persion();
+		n = null;
+		for (int i = 0; i < person.length; i++) {
+			if (person[i] != null && name.equals(person[i].getName())) {
+				n = person[i];
+				break;
+
+			}
+
+		}
+		if (n == null) {
+			System.out.println("该联系人不存在");
+		} else {
+			System.out.println("电话号码为:" + n.getTel());
+		}
+
+		start();
+
+	}
+}
+
+
+
+
+
+public class Text {
+	
+	public static void main(String[] args) {
+		
+		LianXi a = new LianXi();
+		a.startUp();
+		
+		}
+ }
