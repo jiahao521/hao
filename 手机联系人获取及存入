@@ -1,0 +1,90 @@
+
+public class Phone {
+
+	String[] names = new String[50];
+	String[] numbers = new String[50];
+	
+	public void start() {
+		
+		System.out.println("1.保存号码");
+		System.out.println("2.查询号码");
+		System.out.println("请选择功能");
+		java.util.Scanner input = new java.util.Scanner(System.in);
+		int numb = input.nextInt();
+		
+		if(numb == 1) {
+			sava();
+		}else if(numb == 2) {
+			get();
+		}else{
+			System.out.println("功能不存在，请重选");
+			start();
+		}
+	}
+	
+	public void get() {
+		
+		java.util.Scanner input = new java.util.Scanner(System.in);
+		System.out.println("请输入名字");
+		String name = input.next();
+		
+		String number = null;
+		for(int i = 0;i < names.length;i++) {
+			if(name.equals(names[i])) {
+				number = numbers[i];
+				break;	
+			}
+		}
+			if(number == null) {
+				System.out.println("联系人不存在");
+			}else {
+				System.out.println("号码为" + number);
+			}
+			
+		
+		
+		start();
+	}
+	
+	public void save() {
+		
+		java.util.Scanner input = new java.util.Scanner(System.in);
+		System.out.println("请输入名字");
+		String name = input.next();
+		
+		boolean flag = true;
+		
+		for(int i = 0;i < names.length;i++) {
+			if(names[i] == null) {
+				flag = false;
+				
+				String number = input.next();
+				number = numbers[i];
+				break;
+			}
+		}
+		if(flag) {
+			System.out.println("存储已满");
+		}else{
+			System.out.println("存储成功");
+		}
+		start();
+	}
+	
+	
+}
+
+
+
+
+检测
+public class Test {
+	
+	public static void mian(String[] args) {
+		
+		Phone name = new Phone();
+		name.start();
+	}
+
+}
+
